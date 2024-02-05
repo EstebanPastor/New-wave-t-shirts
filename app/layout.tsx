@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/ui/navbar/NavBar";
 import { Raleway } from "next/font/google";
+import AuthContext from "@/context/AuthContext";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -24,8 +24,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={raleway.className}>
-        <NavBar />
-        {children}
+        <AuthContext>
+          <NavBar />
+          {children}
+        </AuthContext>
       </body>
     </html>
   );
