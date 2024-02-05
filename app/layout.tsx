@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Shirty app",
+  title: "New wave t-shirts",
   description: "T-shirt store ",
   keywords:
     "t-shirt, store, fashion, clothing, apparel, shirt, tee, top, style, buy, shop",
