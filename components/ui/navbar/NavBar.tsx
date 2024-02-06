@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { mainLinks } from "@/constants";
@@ -15,9 +15,13 @@ import { FiMenu } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import { TbBracketsAngle } from "react-icons/tb";
 
-const NavBar = () => {
-  const [user, setUser] = useState(false);
+import { User } from "@prisma/client";
 
+interface NavBarProps {
+  user: User;
+}
+
+const NavBar: React.FC<NavBarProps> = ({ user }) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   const [openUserMenu, setOpenUserMenu] = useState(false);

@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "@/components/ui/navbar/NavBar";
 import { Raleway } from "next/font/google";
 import AuthContext from "@/context/AuthContext";
+import getCurrentUser from "./(auth)/actions/getCurrentUserSession";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -16,16 +17,18 @@ export const metadata: Metadata = {
     "t-shirt, store, fashion, clothing, apparel, shirt, tee, top, style, buy, shop",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getCurrentUser();
+
   return (
     <html lang="en">
       <body className={raleway.className}>
         <AuthContext>
-          <NavBar />
+          <NavBar user={user!}/>
           {children}
         </AuthContext>
       </body>
