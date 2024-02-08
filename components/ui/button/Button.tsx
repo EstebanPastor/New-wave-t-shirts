@@ -6,7 +6,7 @@ import { useFormStatus } from "react-dom";
 interface ButtonProps {
   type?: "button" | "submit" | "reset";
   children: React.ReactNode;
-  onClick: () => React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: () => React.MouseEventHandler<HTMLButtonElement>;
   disabled?: boolean;
 }
 
