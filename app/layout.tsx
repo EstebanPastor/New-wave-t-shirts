@@ -4,6 +4,7 @@ import NavBar from "@/components/ui/navbar/NavBar";
 import { Raleway } from "next/font/google";
 import AuthContext from "@/context/AuthContext";
 import getCurrentUser from "./(auth)/actions/getCurrentUserSession";
+import ToasterContext from "@/context/HotToastContext";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -28,7 +29,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={raleway.className}>
         <AuthContext>
-          <NavBar user={user!}/>
+          <ToasterContext />
+          <NavBar user={user!} />
           {children}
         </AuthContext>
       </body>
