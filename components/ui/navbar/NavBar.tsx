@@ -1,20 +1,16 @@
 "use client";
+
 import { useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { mainLinks } from "@/constants";
 import { userLinks } from "@/constants";
 import { User } from "@prisma/client";
-
-//icons
-import {
-  AiOutlineUser,
-  AiOutlineShoppingCart,
-  AiOutlineHeart,
-} from "react-icons/ai";
+import { AiOutlineUser, AiOutlineShoppingCart, AiOutlineHeart } from "react-icons/ai";
 import { FiMenu } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 import { TbBracketsAngle } from "react-icons/tb";
+import { useSession } from "next-auth/react";
 
 interface NavbarProps {
   user: User;
@@ -31,6 +27,10 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
   const userMenuHandler = () => {
     setOpenUserMenu(!openUserMenu);
   };
+
+  
+  const { data: session } = useSession();
+
   return (
     <nav>
       <div className="main-container border-b border-1 flex justify-between items-center py-2 relative">
@@ -50,8 +50,8 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
         </ul>
        
         <div className="flex gap-5 text-xl [&>*]:cursor-pointer">
-        <AiOutlineHeart />
-        <AiOutlineShoppingCart />
+          <AiOutlineHeart />
+          <AiOutlineShoppingCart />
           <div className="max-md:hidden" onClick={userMenuHandler}>
             <AiOutlineUser />
           </div>
@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
 
         {openUserMenu && (
           <div className="z-10 absolute right-0 top-[40px] w-28 bg-gray-700 shadow-md rounded-md p-4 text-white max-md:hidden text-center">
-            {!user ? (
+            {!session ? (
               <ul>
                 <Link onClick={() => setOpenUserMenu(false)} href={"/sign-in"}>
                   <li>Log In</li>
@@ -100,7 +100,7 @@ const Navbar: React.FC<NavbarProps> = ({ user }) => {
                   <li>{link.label}</li>
                 </Link>
               ))}
-              {!user ? (
+              {!session ? (
                 <>
                   <Link href={"/sign-in"}>
                     <li>Log In</li>
