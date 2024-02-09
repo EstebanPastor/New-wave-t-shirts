@@ -1,8 +1,11 @@
+import SignInForm from "../components/sign-in/SignInForm"
 
 
 const SignUp = () => {
   return (
-    <div>page</div>
+    <div className="py-10">
+      <SignInForm />
+    </div>
   )
 }
 
